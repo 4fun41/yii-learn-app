@@ -5,6 +5,7 @@ namespace backend\controllers;
 use common\models\User;
 use common\models\UserSearch;
 use yii\db\StaleObjectException;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -20,16 +21,44 @@ class UserController extends Controller
      */
     public function behaviors(): array
     {
-        return array_merge(
-            parent::behaviors(), [
+        return array_merge(parent::behaviors(), [
+                'access' => [
+                    'class' => AccessControl::class,
+                    'rules' => [
+                        [
+                            'actions' => ['index'],
+                            'roles' => ['user/index'],
+                            'allow' => true,
+                        ],
+                        [
+                            'actions' => ['view'],
+                            'roles' => ['user/view'],
+                            'allow' => true,
+                        ],
+                        [
+                            'actions' => ['create'],
+                            'roles' => ['user/create'],
+                            'allow' => true,
+                        ],
+                        [
+                            'actions' => ['update'],
+                            'roles' => ['user/update'],
+                            'allow' => true,
+                        ],
+                        [
+                            'actions' => ['delete'],
+                            'roles' => ['user/delete'],
+                            'allow' => true,
+                        ],
+                    ],
+                ],
                 'verbs' => [
                     'class' => VerbFilter::class,
                     'actions' => [
                         'delete' => ['POST'],
                     ],
                 ],
-            ]
-        );
+            ]);
     }
 
     /**
