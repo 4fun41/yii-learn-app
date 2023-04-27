@@ -7,4 +7,5 @@ return [
     'user.passwordMinLength' => 8,
     'adminEmail' => 'admin@example.com',
     'bsVersion' => '5.x',
+    'siteName' => 'RepairPanel',
 ];

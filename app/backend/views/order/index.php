@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'order_type_id',
             'price',
             [
-                'class' => ActionColumn::className(),
+                'class' => ActionColumn::class,
                 'urlCreator' => function ($action, Order $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
                  }

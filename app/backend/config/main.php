@@ -15,7 +15,7 @@ return [
     'id' => 'app-backend',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
-    'defaultRoute' => 'site/login',
+    'defaultRoute' => 'site/index',
     'bootstrap' => ['log'],
     'components' => [
         'request' => [

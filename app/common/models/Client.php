@@ -3,6 +3,8 @@
 namespace common\models;
 
 use yii\behaviors\TimestampBehavior;
+use yii\db\ActiveQuery;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "client".
@@ -23,6 +25,12 @@ class Client extends \yii\db\ActiveRecord
     public static function tableName(): string
     {
         return 'client';
+    }
+
+    public static function getList(): array
+    {
+        // todo Привязаться к NotNull полю.
+        return ArrayHelper::map(self::find()->all(), 'id', 'username');
     }
 
     /**
@@ -65,9 +73,9 @@ class Client extends \yii\db\ActiveRecord
     /**
      * Gets query for [[Orders]].
      *
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
-    public function getOrders(): \yii\db\ActiveQuery
+    public function getOrders(): ActiveQuery
     {
         return $this->hasMany(Order::class, ['client_id' => 'id']);
     }

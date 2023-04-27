@@ -4,10 +4,12 @@ namespace backend\controllers;
 
 use common\models\Order;
 use common\models\OrderSearch;
+use yii\db\StaleObjectException;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\Response;
 
 /**
  * OrderController implements the CRUD actions for Order model.
@@ -107,9 +109,9 @@ class OrderController extends Controller
     /**
      * Creates a new Order model.
      * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return string|\yii\web\Response
+     * @return string|Response
      */
-    public function actionCreate(): \yii\web\Response|string
+    public function actionCreate(): Response|string
     {
         $model = new Order();
 
@@ -130,10 +132,10 @@ class OrderController extends Controller
      * Updates an existing Order model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
-     * @return string|\yii\web\Response
+     * @return string|Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate(int $id): \yii\web\Response|string
+    public function actionUpdate(int $id): Response|string
     {
         $model = $this->findModel($id);
 
@@ -150,10 +152,12 @@ class OrderController extends Controller
      * Deletes an existing Order model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
-     * @return \yii\web\Response
+     * @return Response
      * @throws NotFoundHttpException if the model cannot be found
+     * @throws \Throwable
+     * @throws StaleObjectException
      */
-    public function actionDelete(int $id): \yii\web\Response
+    public function actionDelete(int $id): Response
     {
         $this->findModel($id)->delete();
 

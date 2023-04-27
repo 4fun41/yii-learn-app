@@ -3,6 +3,7 @@
 namespace common\models;
 
 use yii\behaviors\TimestampBehavior;
+use yii\db\ActiveQuery;
 
 /**
  * This is the model class for table "order".
@@ -76,9 +77,9 @@ class Order extends \yii\db\ActiveRecord
     /**
      * Gets query for [[Client]].
      *
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
-    public function getClient(): \yii\db\ActiveQuery
+    public function getClient(): ActiveQuery
     {
         return $this->hasOne(Client::class, ['id' => 'client_id']);
     }
@@ -86,9 +87,9 @@ class Order extends \yii\db\ActiveRecord
     /**
      * Gets query for [[OrderType]].
      *
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
-    public function getOrderType(): \yii\db\ActiveQuery
+    public function getOrderType(): ActiveQuery
     {
         return $this->hasOne(OrderType::class, ['id' => 'order_type_id']);
     }

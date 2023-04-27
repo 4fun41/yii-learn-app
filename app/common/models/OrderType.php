@@ -2,6 +2,9 @@
 
 namespace common\models;
 
+use yii\db\ActiveQuery;
+use yii\helpers\ArrayHelper;
+
 /**
  * This is the model class for table "order_type".
  *
@@ -18,6 +21,11 @@ class OrderType extends \yii\db\ActiveRecord
     public static function tableName(): string
     {
         return 'order_type';
+    }
+
+    public static function getList(): array
+    {
+        return ArrayHelper::map(self::find()->all(), 'id', 'type');
     }
 
     /**
@@ -45,9 +53,9 @@ class OrderType extends \yii\db\ActiveRecord
     /**
      * Gets query for [[Orders]].
      *
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
-    public function getOrders(): \yii\db\ActiveQuery
+    public function getOrders(): ActiveQuery
     {
         return $this->hasMany(Order::class, ['order_type_id' => 'id']);
     }
