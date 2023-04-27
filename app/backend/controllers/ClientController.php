@@ -2,19 +2,17 @@
 
 namespace backend\controllers;
 
-use common\models\User;
-use common\models\UserSearch;
-use yii\db\StaleObjectException;
+use common\models\Client;
+use common\models\ClientSearch;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\web\Response;
 
 /**
- * UserController implements the CRUD actions for User model.
+ * ClientController implements the CRUD actions for Client model.
  */
-class UserController extends Controller
+class ClientController extends Controller
 {
     /**
      * @inheritDoc
@@ -22,53 +20,53 @@ class UserController extends Controller
     public function behaviors(): array
     {
         return array_merge(parent::behaviors(), [
-                'access' => [
-                    'class' => AccessControl::class,
-                    'rules' => [
-                        [
-                            'actions' => ['index'],
-                            'roles' => ['user/index'],
-                            'allow' => true,
-                        ],
-                        [
-                            'actions' => ['view'],
-                            'roles' => ['user/view'],
-                            'allow' => true,
-                        ],
-                        [
-                            'actions' => ['create'],
-                            'roles' => ['user/create'],
-                            'allow' => true,
-                        ],
-                        [
-                            'actions' => ['update'],
-                            'roles' => ['user/update'],
-                            'allow' => true,
-                        ],
-                        [
-                            'actions' => ['delete'],
-                            'roles' => ['user/delete'],
-                            'allow' => true,
-                        ],
+            'access' => [
+                'class' => AccessControl::class,
+                'rules' => [
+                    [
+                        'actions' => ['index'],
+                        'roles' => ['client/index'],
+                        'allow' => true,
+                    ],
+                    [
+                        'actions' => ['view'],
+                        'roles' => ['client/view'],
+                        'allow' => true,
+                    ],
+                    [
+                        'actions' => ['create'],
+                        'roles' => ['client/create'],
+                        'allow' => true,
+                    ],
+                    [
+                        'actions' => ['update'],
+                        'roles' => ['client/update'],
+                        'allow' => true,
+                    ],
+                    [
+                        'actions' => ['delete'],
+                        'roles' => ['client/delete'],
+                        'allow' => true,
                     ],
                 ],
-                'verbs' => [
-                    'class' => VerbFilter::class,
-                    'actions' => [
-                        'delete' => ['POST'],
-                    ],
+            ],
+            'verbs' => [
+                'class' => VerbFilter::class,
+                'actions' => [
+                    'delete' => ['POST'],
                 ],
-            ]);
+            ],
+        ]);
     }
 
     /**
-     * Lists all User models.
+     * Lists all Client models.
      *
      * @return string
      */
     public function actionIndex(): string
     {
-        $searchModel = new UserSearch();
+        $searchModel = new ClientSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
@@ -78,7 +76,7 @@ class UserController extends Controller
     }
 
     /**
-     * Displays a single User model.
+     * Displays a single Client model.
      * @param int $id ID
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
@@ -91,15 +89,15 @@ class UserController extends Controller
     }
 
     /**
-     * Finds the User model based on its primary key value.
+     * Finds the Client model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
-     * @return User the loaded model
+     * @return Client the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel(int $id): User
+    protected function findModel(int $id): Client
     {
-        if (($model = User::findOne(['id' => $id])) !== null) {
+        if (($model = Client::findOne(['id' => $id])) !== null) {
             return $model;
         }
 
@@ -107,13 +105,13 @@ class UserController extends Controller
     }
 
     /**
-     * Creates a new User model.
+     * Creates a new Client model.
      * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return string|Response
+     * @return string|\yii\web\Response
      */
-    public function actionCreate(): Response|string
+    public function actionCreate(): \yii\web\Response|string
     {
-        $model = new User();
+        $model = new Client();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
@@ -129,13 +127,13 @@ class UserController extends Controller
     }
 
     /**
-     * Updates an existing User model.
+     * Updates an existing Client model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
-     * @return string|Response
+     * @return string|\yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate(int $id): Response|string
+    public function actionUpdate(int $id): \yii\web\Response|string
     {
         $model = $this->findModel($id);
 
@@ -149,15 +147,13 @@ class UserController extends Controller
     }
 
     /**
-     * Deletes an existing User model.
+     * Deletes an existing Client model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
-     * @return Response
+     * @return \yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
-     * @throws \Throwable
-     * @throws StaleObjectException
      */
-    public function actionDelete(int $id): Response
+    public function actionDelete(int $id): \yii\web\Response
     {
         $this->findModel($id)->delete();
 

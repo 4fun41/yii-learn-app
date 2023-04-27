@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use yii\caching\FileCache;
+use yii\rbac\DbManager;
 
 return [
     'aliases' => [
@@ -13,6 +14,9 @@ return [
     'components' => [
         'cache' => [
             'class' => FileCache::class,
+        ],
+        'authManager' => [
+            'class' => DbManager::class,
         ],
     ],
 ];
