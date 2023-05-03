@@ -10,7 +10,8 @@ use yii\widgets\ActiveForm;
 
 <div class="order-search">
 
-    <?php $form = ActiveForm::begin([
+    <?php
+    $form = ActiveForm::begin([
         'action' => ['index'],
         'method' => 'get',
         'options' => [
@@ -26,11 +27,14 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'price') ?>
 
+    <?= $form->field($model, 'garanty') ?>
+
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
         <?= Html::resetButton('Reset', ['class' => 'btn btn-outline-secondary']) ?>
     </div>
 
-    <?php ActiveForm::end(); ?>
+    <?php
+    ActiveForm::end(); ?>
 
 </div>
