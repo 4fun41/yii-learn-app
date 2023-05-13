@@ -3,9 +3,9 @@
 use yii\db\Migration;
 
 /**
- * Class m230510_181424_dev
+ * Class m999999_999999_dev
  */
-class m230510_181424_dev extends Migration
+class m999999_999999_dev extends Migration
 {
     /**
      * {@inheritdoc}
@@ -45,7 +45,7 @@ class m230510_181424_dev extends Migration
      */
     public function safeDown()
     {
-        echo "m230510_181424_dev cannot be reverted.\n";
+        echo "m999999999999_dev cannot be reverted.\n";
 
         return false;
     }

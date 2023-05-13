@@ -21,6 +21,8 @@ class m230426_185921_create_order_table extends Migration
             'client_id' => $this->integer(),
             'order_type_id' => $this->integer(),
             'price' => $this->integer(),
+            'created_at' => $this->integer()->notNull(),
+            'updated_at' => $this->integer()->notNull(),
         ]);
 
         // creates index for column `client_id`

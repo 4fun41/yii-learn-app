@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'client_id',
             'order_type_id',
             'price',
-            'garanty',
+            'guaranty',
             [
                 'class' => ActionColumn::class,
                 'urlCreator' => function ($action, Order $model, $key, $index, $column) {
