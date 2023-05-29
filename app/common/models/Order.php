@@ -39,7 +39,7 @@ class Order extends \yii\db\ActiveRecord
             [['client_id', 'order_type_id', 'price'], 'default', 'value' => null],
             // TODO сделать константой
             [['guaranty_id'], 'default', 'value' => 1],
-            [['client_id', 'order_type_id', 'price', 'guaranty_id','created_at', 'updated_at'], 'integer'],
+            [['client_id', 'order_type_id', 'price', 'guaranty_id',], 'integer'],
             [
                 ['client_id'],
                 'exist',

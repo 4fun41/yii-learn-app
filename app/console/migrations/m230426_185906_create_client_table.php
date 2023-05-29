@@ -10,7 +10,7 @@ class m230426_185906_create_client_table extends Migration
     /**
      * {@inheritdoc}
      */
-    public function safeUp()
+    public function safeUp(): void
     {
         $this->createTable('{{%client}}', [
             'id' => $this->primaryKey(),
@@ -24,7 +24,7 @@ class m230426_185906_create_client_table extends Migration
     /**
      * {@inheritdoc}
      */
-    public function safeDown()
+    public function safeDown(): void
     {
         $this->dropTable('{{%client}}');
     }

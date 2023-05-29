@@ -19,6 +19,7 @@ use yii\web\IdentityInterface;
  * @property int $status
  * @property int $created_at
  * @property-read string $authKey
+ * @property-write mixed $password
  * @property int $updated_at
  */
 class User extends ActiveRecord implements IdentityInterface
@@ -117,4 +118,8 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return Yii::$app->security->validatePassword($password, $this->password_hash);
     }
+
+
+
+
 }
